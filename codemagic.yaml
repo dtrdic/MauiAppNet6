@@ -27,6 +27,7 @@ workflows:
           --source https://api.nuget.org/v3/index.json     
       - name: Build
         script: | 
+          dotnet workload restore \
           $DOTNET_BIN publish -f net6.0-android \
             -c Release \
             -p:AndroidKeyStore=True \
