@@ -28,10 +28,9 @@ workflows:
           $DOTNET_BIN workload list  
       - name: Build
         script: | 
-
-          $DOTNET_BIN publish -f net6.0-android \
+          $DOTNET_BIN build Cover/Cover.csproj -c Release -f net6.0-android \
             -c Release \
-            -p:AndroidKeyStore=True \
+            # -p:AndroidKeyStore=True \
             -p:AndroidSigningKeyStore=$CM_KEYSTORE_PATH \
             -p:AndroidSigningKeyAlias=$CM_KEY_ALIAS \
             -p:AndroidSigningKeyPass=$CM_KEY_PASSWORD \
