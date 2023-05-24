@@ -15,19 +15,25 @@ workflows:
     scripts:
       - name: Install dotnet sdk
         script: | 
-          wget https://dot.net/v1/dotnet-install.sh
-          chmod +x dotnet-install.sh
-          ./dotnet-install.sh --install-dir $DOTNET_PATH
+          chmod +x ./scripts/dotnet-install.sh
+          ./scripts/dotnet-install.sh --install-dir $DOTNET_PATH
 
       - name: Install MAUI
         script: |
           $DOTNET_BIN nuget locals all --clear 
-          $DOTNET_BIN workload install maui-android wasm-tools \
-          --source https://aka.ms/dotnet6/nuget/index.json \
-          --source https://api.nuget.org/v3/index.json     
+          $DOTNET_BIN workload install android maui \
+            --source https://aka.ms/dotnet6/nuget/index.json \
+            --source https://api.nuget.org/v3/index.json
+          $DOTNET_BIN workload list
       - name: Build
         script: | 
-          $DOTNET_BIN publish -f net6.0-android \
+          LATEST_BUILD_NUMBER=$(google-play get-latest-build-number --package-name "$PACKAGE_NAME")
+          if [ -z $LATEST_BUILD_NUMBER ]; then
+              UPDATED_BUILD_NUMBER=$BUILD_NUMBER
+          else
+              UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
+          fi
+          $DOTNET_BIN publish -f net6.0-android FlipdishOrderManager/OrderManager/OrderManager.csproj \
             -c Release \
             -p:AndroidKeyStore=True \
             -p:AndroidSigningKeyStore=$CM_KEYSTORE_PATH \
@@ -35,7 +41,7 @@ workflows:
             -p:AndroidSigningKeyPass=$CM_KEY_PASSWORD \
             -p:AndroidSigningStorePass=$CM_KEYSTORE_PASSWORD \
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
-            -p:ApplicationDisplayVersion="1.0.0" \
+            -p:ApplicationDisplayVersion="1.2" \
             -o ../artifacts
     artifacts:
         - /Users/builder/clone/artifacts/*Signed.aab
