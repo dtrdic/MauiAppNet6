@@ -27,12 +27,11 @@ workflows:
           --source https://api.nuget.org/v3/index.json     
       - name: Build
         script: | 
-          $DOTNET_BIN dotnet workload restore \
           $DOTNET_BIN publish -f net6.0-android \
             -c Release \
             -p:AndroidKeyStore=True \
             -p:AndroidSigningKeyStore=$CM_KEYSTORE_PATH \
-            -p:AndroidSigningKeyAlias=$CM_KEY_ALIAS \
+            -p:AndroidSigningKeyAlias=$CM_KEY_ALIAS  \
             -p:AndroidSigningKeyPass=$CM_KEY_PASSWORD \
             -p:AndroidSigningStorePass=$CM_KEYSTORE_PASSWORD \
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
