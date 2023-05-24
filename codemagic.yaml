@@ -30,7 +30,6 @@ workflows:
           else
               UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
           fi
-          cd MauiAppNet6
           $DOTNET_BIN publish -f net6.0-android \
             -c Release \
             -p:AndroidKeyStore=True \
