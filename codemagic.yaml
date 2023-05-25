@@ -43,7 +43,6 @@ workflows:
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
             -p:ApplicationDisplayVersion="1.2" \
             -o ../artifacts
-          $DOTNET_BIN workload list
     artifacts:
         - /Users/builder/clone/artifacts/*Signed.aab
     publishing:
