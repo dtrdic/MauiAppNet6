@@ -32,7 +32,7 @@ workflows:
           else
               UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
           fi
-          $DOTNET_BIN publish -f net6.0-android FlipdishOrderManager/OrderManager/OrderManager.csproj \
+          $DOTNET_BIN publish -f net6.0-android MauiAppNet6.csproj \
             -c Release \
             -p:AndroidKeyStore=True \
             -p:AndroidSigningKeyStore=$CM_KEYSTORE_PATH \
