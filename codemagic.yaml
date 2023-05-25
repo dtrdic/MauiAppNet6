@@ -32,7 +32,7 @@ workflows:
           else
               UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
           fi
-          $DOTNET_BIN publish -f net6.0-android \
+          $DOTNET_BIN publish -f net6.0-android FlipdishOrderManager/OrderManager/OrderManager.csproj \
             -c Release \
             -p:AndroidKeyStore=True \
             -p:AndroidSigningKeyStore=$CM_KEYSTORE_PATH \
@@ -40,7 +40,7 @@ workflows:
             -p:AndroidSigningKeyPass=$CM_KEY_PASSWORD \
             -p:AndroidSigningStorePass=$CM_KEYSTORE_PASSWORD \
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
-            -p:ApplicationDisplayVersion="1.0.0" \
+            -p:ApplicationDisplayVersion="1.2" \
             -o ../artifacts
     artifacts:
         - /Users/builder/clone/artifacts/*Signed.aab
