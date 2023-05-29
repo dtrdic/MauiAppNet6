@@ -30,12 +30,12 @@ workflows:
           $DOTNET_BIN workload update
       - name: Build
         script: |
-          LATEST_BUILD_NUMBER=1
-          if [ -z $LATEST_BUILD_NUMBER ]; then
-              UPDATED_BUILD_NUMBER=$BUILD_NUMBER
-          else
-              UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
-          fi
+          # LATEST_BUILD_NUMBER=1
+          # if [ -z $LATEST_BUILD_NUMBER ]; then
+          #     UPDATED_BUILD_NUMBER=$BUILD_NUMBER
+          # else
+          #     UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
+          # fi
 
           $DOTNET_BIN publish -f net6.0-android \
             -c Release \
