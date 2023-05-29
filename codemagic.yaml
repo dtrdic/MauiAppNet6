@@ -46,7 +46,7 @@ workflows:
             -o ../artifacts
           $DOTNET_BIN workload list
     artifacts:
-        - /Users/builder/clone/artifacts/*Signed.aab
+        - $DOTNET_BIN/artifacts/*Signed.aab
     publishing:
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
