@@ -15,6 +15,7 @@ workflows:
     scripts:
       - name: Install dotnet sdk
         script: | 
+          wget https://dot.net/v1/dotnet-install.sh
           chmod +x dotnet-install.sh
           ./dotnet-install.sh --install-dir $DOTNET_PATH
       - name: Install MAUI
@@ -49,7 +50,7 @@ workflows:
 
 
     artifacts:
-        - /Users/builder/clone/artifacts/*Signed.aab
+        - build/**/outputs/**/*.aab
     publishing:
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
