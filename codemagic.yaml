@@ -24,6 +24,8 @@ workflows:
           $DOTNET_BIN workload install android maui \
             --source https://aka.ms/dotnet6/nuget/index.json \
             --source https://api.nuget.org/v3/index.json  
+          $DOTNET_BIN workload list
+          $DOTNET_BIN workload update
       - name: Build
         script: |
           LATEST_BUILD_NUMBER=1
@@ -43,8 +45,7 @@ workflows:
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
             -p:ApplicationDisplayVersion="1.2" \
             -o ../artifacts
-          $DOTNET_BIN workload list
-          $DOTNET_BIN workload update
+
 
     artifacts:
         - $DOTNET_BIN/artifacts/*Signed.aab
