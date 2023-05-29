@@ -32,7 +32,6 @@ workflows:
           else
               UPDATED_BUILD_NUMBER=$(($LATEST_BUILD_NUMBER + 1))
           fi
-          $DOTNET_BIN workload update
 
           $DOTNET_BIN publish -f net6.0-android \
             -c Release \
@@ -44,6 +43,9 @@ workflows:
             -p:ApplicationVersion=$UPDATED_BUILD_NUMBER \
             -p:ApplicationDisplayVersion="1.2" \
             -o ../artifacts
+          $DOTNET_BIN workload list
+          $DOTNET_BIN workload update
+
     artifacts:
         - $DOTNET_BIN/artifacts/*Signed.aab
     publishing:
