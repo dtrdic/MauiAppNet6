@@ -43,10 +43,9 @@ workflows:
             -p:ApplicationDisplayVersion="1.2" \
             -o ../artifacts
           $DOTNET_BIN workload list
-          $DOTNET_BIN workload update
 
     artifacts:
-        - $DOTNET_BIN/artifacts/*Signed.aab
+        - /Users/builder/clone/artifacts/*Signed.aab
     publishing:
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
