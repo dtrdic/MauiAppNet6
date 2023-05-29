@@ -22,7 +22,7 @@ workflows:
         script: | 
           $DOTNET_BIN nuget locals all --clear 
           $DOTNET_BIN workload install maui-android wasm-tools --source https://aka.ms/dotnet6/nuget/index.json --source https://api.nuget.org/v3/index.json     
-
+          $DOTNET_BIN workload update
       - name: Build
         script: |
           LATEST_BUILD_NUMBER=1
@@ -44,8 +44,9 @@ workflows:
             -o ../artifacts
           $DOTNET_BIN workload list
 
+
     artifacts:
-        - /Users/builder/clone/artifacts/*Signed.aab
+        - $DOTNET_BIN/artifacts/*Signed.aab
     publishing:
       google_play:
         credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
