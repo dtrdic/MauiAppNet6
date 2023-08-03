@@ -98,9 +98,13 @@ workflows:
           fi
           
           CERT_NAME=$(keychain list-certificates | jq -r '.[] | .common_name')
+          
           PROFILE_NAME=$(find ~/Library/MobileDevice/Provisioning\ Profiles -name "*.mobileprovision" -execdir sh -c '/usr/libexec/PlistBuddy -c "print :Name" /dev/stdin <<< $(security cms -D -i {})' \;)
           
-          $DOTNET publish -f net6.0.412-ios \
+          $DOTNET workload list
+          $DOTNET workload update
+          
+          $DOTNET publish -f net6.0-ios \
             -c Release \
             -p:BuildIpa=True \
             -p:ApplicationDisplayVersion="1.0.0" \
