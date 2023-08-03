@@ -15,7 +15,7 @@
 		<ApplicationTitle>MauiAppNet6</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.mauiappnet6</ApplicationId>
+		<ApplicationId>io.codemagic.dtrdic13</ApplicationId>
 		<ApplicationIdGuid>b0da04be-17cc-4e78-ae5a-89ef05a9044c</ApplicationIdGuid>
 
 		<!-- Versions -->
