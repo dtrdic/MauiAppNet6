@@ -87,9 +87,9 @@ workflows:
           PLIST=$CM_BUILD_DIR/Platforms/iOS/Info.plist
           PLIST_BUDDY=/usr/libexec/PlistBuddy
           $PLIST_BUDDY -c "Add :ITSAppUsesNonExemptEncryption bool false" $PLIST
-      # - name: Build First
-      #   script: | 
-      #     $DOTNET build -f net6.0-ios
+      - name: CaliburnNuGet
+        script: | 
+          $DOTNET nuget add source https://www.myget.org/F/caliburn-micro-builds/api/v3/index.json --name CaliburnNuGet.org
       - name: Set build version and build the app
         script: |
           LATEST_BUILD_NUMBER=$(app-store-connect get-latest-testflight-build-number "$APP_ID")
