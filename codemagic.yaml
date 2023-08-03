@@ -67,12 +67,13 @@ workflows:
         bundle_identifier: io.codemagic.dtrdic13
       vars:
         DOTNET_PATH: $CM_BUILD_DIR/dotnet
-        DOTNET_BIN:  $CM_BUILD_DIR/dotnet/dotnet
+        DOTNET: $CM_BUILD_DIR/dotnet/dotnet
         APP_ID: 6444530615
         BUNDLE_ID: "io.codemagic.dtrdic13"
     scripts:
-      - name: Install dotnet sdk
-        script: |
+      - name: Install .NET SDK
+        script: | 
+          wget https://dot.net/v1/dotnet-install.sh
           chmod +x dotnet-install.sh
           ./dotnet-install.sh --install-dir $DOTNET_PATH
       - name: Install MAUI
