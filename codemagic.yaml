@@ -90,6 +90,9 @@ workflows:
       - name: CaliburnNuGet
         script: | 
           $DOTNET nuget add source https://www.myget.org/F/caliburn-micro-builds/api/v3/index.json --name CaliburnNuGet.org
+      - name: workload list
+        script: | 
+          $DOTNET workload list
       - name: Set build version and build the app
         script: |
           LATEST_BUILD_NUMBER=$(app-store-connect get-latest-testflight-build-number "$APP_ID")
