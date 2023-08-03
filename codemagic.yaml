@@ -68,7 +68,7 @@ workflows:
       vars:
         DOTNET_PATH: $CM_BUILD_DIR/dotnet
         DOTNET: $CM_BUILD_DIR/dotnet/dotnet
-        APP_ID: 6444530615
+        APP_ID: 6457209540
         BUNDLE_ID: "io.codemagic.dtrdic13"
     scripts:
       - name: Install .NET SDK
@@ -98,7 +98,7 @@ workflows:
           PROFILE_NAME=$(find ~/Library/MobileDevice/Provisioning\ Profiles -name "*.mobileprovision" -execdir sh -c '/usr/libexec/PlistBuddy -c "print :Name" /dev/stdin <<< $(security cms -D -i {})' \;)
           
           cd src
-          $DOTNET_BIN publish -f net6.0-ios \
+          $DOTNET publish -f net6.0-ios \
             -c Release \
             -p:BuildIpa=True \
             -p:ApplicationDisplayVersion="1.0.0" \
