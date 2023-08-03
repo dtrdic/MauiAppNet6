@@ -67,7 +67,7 @@ workflows:
         bundle_identifier: io.codemagic.dtrdic13
       vars:
         DOTNET_PATH: $CM_BUILD_DIR/dotnet
-        DOTNET: $CM_BUILD_DIR/dotnet/dotnet
+        DOTNET: $CM_BUILD_DIR/dotnet
         APP_ID: 6457209540
         BUNDLE_ID: "io.codemagic.dtrdic13"
     scripts:
