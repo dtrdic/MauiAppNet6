@@ -141,3 +141,38 @@ workflows:
     publishing:
       app_store_connect:
         auth: integration
+
+maui-ios-simulator-build:
+    name: Dotnet MAUI iOS
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    environment:
+      xcode: latest
+      vars:
+        DOTNET_PATH: $CM_BUILD_DIR/dotnet
+        DOTNET: $CM_BUILD_DIR/dotnet/dotnet
+        APP_ID: 6457209540
+        BUNDLE_ID: "io.codemagic.dtrdic14"
+    scripts:
+      - name: Install dotnet sdk
+        script: | 
+          wget https://dot.net/v1/dotnet-install.sh
+          chmod +x dotnet-install.sh
+          ./dotnet-install.sh --install-dir $DOTNET_PATH
+      - name: Install MAUI
+        script: | 
+          $DOTNET_BIN nuget locals all --clear 
+          $DOTNET_BIN workload install ios
+          $DOTNET_BIN workload install android maui \
+            --source https://aka.ms/dotnet6/nuget/index.json \
+            --source https://api.nuget.org/v3/index.json
+      - name: Build iOS Simulator
+        script: |
+          $DOTNET_BIN workload list
+          $DOTNET_BIN workload update
+          $DOTNET_BIN build -f net6.0-ios \
+            -c Release \
+            -p:ApplicationVersion=$BUILD_NUMBER \
+            -o ../artifacts
+    artifacts:
+      - build/**/outputs/**/*.app
