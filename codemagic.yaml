@@ -142,7 +142,7 @@ workflows:
       app_store_connect:
         auth: integration
 
-maui-ios-simulator-build:
+  maui-ios-simulator-build:
     name: Dotnet MAUI iOS
     max_build_duration: 120
     instance_type: mac_mini_m1
