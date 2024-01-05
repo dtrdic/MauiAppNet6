@@ -107,9 +107,9 @@ workflows:
             -p:ApplicationDisplayVersion="1.0.$BUILD_NUMBER" \
             -p:ApplicationVersion=$BUILD_NUMBER \
             -p:RuntimeIdentifier=ios-arm64 \
-            # -p:CodesignKey="$CERT_NAME" \
-            # -p:CodesignProvision="$PROFILE_NAME" \
-            # -o ../artifacts
+            -p:CodesignKey="$CERT_NAME" \
+            -p:CodesignProvision="$PROFILE_NAME" \
+            -o ../artifacts
 
     artifacts:
         - ./artifacts/*.ipa
