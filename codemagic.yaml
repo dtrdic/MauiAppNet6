@@ -94,6 +94,7 @@ workflows:
       - name: workload list
         script: | 
           $DOTNET workload list
+          $DOTNET workload restore 
       - name: Set build version and build the app
         script: |
           CERT_NAME=$(keychain list-certificates | jq -r '.[] | .common_name')
